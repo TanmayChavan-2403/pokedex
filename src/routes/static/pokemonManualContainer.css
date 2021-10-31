@@ -1,0 +1,142 @@
+*{
+    padding:0px ;
+    margin: 0px;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}
+
+
+#body{
+    width: 100%;
+    position: relative;
+    height: fit-content;
+    background-color: #434262;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+
+html {
+    height: -webkit-fill-available;
+}
+
+
+
+/* Pokedex Manual container start */
+
+#pokedexManual{
+    width: 85%;
+    height: 95%;
+    margin: auto;
+    background-color: #3e3d5a;
+}
+
+#manualHeader{
+    width: 100%;
+    /* font-size: 2.6vw; */
+    font-size: 25px;    
+    padding: 10px 15px;
+    background-color: #505074;
+    font-family: 'Montserrat', sans-serif;
+    color: transparent;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: #b9b1df;
+}
+
+#manualHeader span{
+    color: #b9b1df;
+}
+
+#manualContent{
+    width: 100%;
+    height: 88%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+}
+
+#manualContent::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+#manualContent p{
+    /* font-size: 1.5vw; */
+    font-size: 18px;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+#pokemonTypesHelp{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    justify-content: space-between;
+}
+
+
+.block{
+    width: 100%;
+    /* min-width: 200px; */
+    max-width: 250px;
+    height: 70px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #434262;
+}
+
+.imageBlock{
+    width: 25%;
+    height: 100%;
+    padding: 5px;
+}
+
+.imageBlock img{
+    width: auto;
+    height: 100%;
+
+}
+
+.typeName{
+    width: 75%;
+    height: 100%;
+    display: flex;
+    /* font-size: 1.5vw; */
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchbarHelp-container{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#searchbarHelp-arrow{
+    width: 30%;
+    height: 100%;
+}
+
+#searchbarHelp-arrow img{
+    width: auto;
+    height:100%;
+    float: right;
+    transform: rotateZ(47deg);
+}
+
+#searchbarHelp-image{
+    width: 50%;
+    height: 100%;
+}
+
+/* Pokedex Manual container end */

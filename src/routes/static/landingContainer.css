@@ -1,0 +1,92 @@
+*{
+    padding:0px ;
+    margin: 0px;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}
+
+
+#body{
+    width: 100%;
+    position: relative;
+    height: fit-content;
+    background-color: #434262;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+
+html {
+    height: -webkit-fill-available;
+}
+
+h2{
+    width: fit-content;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Landing page container start */
+
+#landingContainer img{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+#landingContainer h1{
+    width: fit-content;
+    position: relative;
+    font-size: min(10vw, 110px);
+    -webkit-text-stroke: 2px;
+    color: transparent;
+    -webkit-text-stroke-color: #333c61;
+}
+
+#landingContainer h2{
+    width: fit-content;
+    position: relative;
+    font-size: min(10vw,90px);
+    transform: translate(25%, -25%);
+    -webkit-text-stroke: 2px;
+    color: transparent;
+    -webkit-text-stroke-color: #1c2a5c;
+}
+
+#landingContainer h1 span{
+    color: #47539e;
+    -webkit-text-stroke-color: #47539e;
+}
+
+#landingContainer h2 span{
+    color: #444e8c;
+    -webkit-text-stroke-color: #444e8c;
+}
+
+
+#landingText{
+    width: 100vw;
+    height: 75%;
+    position: absolute;
+    bottom: 0px;
+}
+
+
+
+/* Landing page container start */
