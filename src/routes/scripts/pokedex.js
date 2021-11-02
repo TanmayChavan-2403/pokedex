@@ -47,53 +47,54 @@ class Pokedex extends Component{
         return(
             <>
                  <div id = 'pokedexContainer'>
-                        <div id='searchSection'>
-                            <div id='search'>
-                                <div id='searchButton' onClick={this.toggleSearchBar}>
-                                    <img src='/images/pokeBall.png'></img>
-                                </div>
-                                <div id='serachInputField' data-state = 'close'>
-                                    <input type='text' name='pokemonName' onKeyDown={checkKeyPress}></input>
-                                </div>
-                                <button type='text' onClick={() => fetchData('specific')}> Search </button>
-                            </div>
-                            
-                        </div>
 
-                        <div id='pokemonCard'>
-                            <div id='card'>
-                                <div id = 'card-image'>
-                                    <img id='pokemon-sprite'src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg'></img>    
-                                </div> 
-                                <div id = 'card-details'>
-                                    <div id='pokemon-name'>
-                                        <h1>Charizard</h1>
-                                    </div>
-                                    <div id='pokemon-type' className='info-container'>
-                                        <p> <span >Type: </span> Fire  </p>
-                                    </div>
-                                    <div id='pokemon-weight' className='info-container'>
-                                        <p> <span >Weight: </span>905  </p>
-                                    </div>
-                                    <div id='pokemon-held-items' className='info-container'>
-                                        <p> <span >Held-items: </span> none  </p>
-                                    </div>
-                                    <div id='pokemon-abilities' className='info-container'>
-                                        <p> <span>Abilities: </span> Blaze, Solar-power  </p>
-                                    </div>
-                                </div> 
+                    <div id='searchSection'>
+                        <div id='search'>
+                            <div id='searchButton' onClick={this.toggleSearchBar}>
+                                <img src='/images/pokeBall.png'></img>
                             </div>
-                        </div>
-                        
-                        <div id='status-page'>
-                            <div id ='status-gif'>
-                                <img src='/images/nothingYet.gif'></img>
+                            <div id='serachInputField' data-state = 'close'>
+                                <input type='text' name='pokemonName' onKeyDown={(e) => {checkKeyPress(e, 'specific')}}></input>
                             </div>
-                            <div id ='status-message'>
-                                <h1> You haven't searched anything yet </h1>
-                            </div>
+                            <button type='text' onClick={() => fetchData('specific')}> Search </button>
                         </div>
                     </div>
+
+                    <div id='pokemonCard'>
+                        <div id='card'>
+                            <div id = 'card-image'>
+                                <img id='pokemon-sprite'src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg'></img>    
+                            </div> 
+                            <div id = 'card-details'>
+                                <div id='pokemon-name'>
+                                    <h1>Charizard</h1>
+                                </div>
+                                <div id='pokemon-type' className='info-container'>
+                                    <p> <span >Type: </span> Fire  </p>
+                                </div>
+                                <div id='pokemon-weight' className='info-container'>
+                                    <p> <span >Weight: </span>905  </p>
+                                </div>
+                                <div id='pokemon-held-items' className='info-container'>
+                                    <p> <span >Held-items: </span> none  </p>
+                                </div>
+                                <div id='pokemon-abilities' className='info-container'>
+                                    <p> <span>Abilities: </span> Blaze, Solar-power  </p>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    
+                    <div id='status-page'>
+                        <div id ='status-gif'>
+                            <img src='/images/nothingYet.gif'></img>
+                        </div>
+                        <div id ='status-message'>
+                            <h1> You haven't searched anything yet </h1>
+                        </div>
+                    </div>
+                    
+                </div>
             </>
         )
     }

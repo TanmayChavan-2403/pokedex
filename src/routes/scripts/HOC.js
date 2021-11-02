@@ -1,7 +1,7 @@
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 
 const HOC = OriginalComponent => {
-    class NewComponent extends Component{
+    class NewComponent extends PureComponent{
         constructor(props){
             super(props)
 
@@ -14,24 +14,26 @@ const HOC = OriginalComponent => {
             this.checkKeyPress = this.checkKeyPress.bind(this);
         }
 
-        checkKeyPress(e){
-            if (e.key == 'Enter'){
-                this.fetchInformatiion();
+                        
+
+        checkKeyPress(e, type){
+            if (e.key === 'Enter'){
+                this.fetchInformatiion(type);
             }
         }
-        // type value will be undefined if we are searching for specific details and hitting enter
-        // else type value will be "specific" in case we will be assigining undefined as value to type as we are cheking 
-        // for "undefined" in second "then" promise chain
-        fetchInformatiion(type){
-            if (type === 'specific'){
-                type = undefined;
-            }
+        fetchInformatiion(type, URL=undefined, id=null){
             const pokemon = document.getElementById('serachInputField').getElementsByTagName('input')[0].value;
-            if (pokemon === ""){
+            let fetchURL;
+            if (type === 'specific' && pokemon === ""){
                 alert("Please don't leave field empty");
                 return
             }
-            fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+            if (URL === undefined){
+                fetchURL = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
+            } else {
+                fetchURL = URL;
+            }
+            fetch(fetchURL)
             .then(resp => {
                 if (resp.status === 404){
                     return Promise.reject(`Pokemon ${pokemon} not present in database`)
@@ -40,19 +42,22 @@ const HOC = OriginalComponent => {
                 }
             })
             .then(resp => {
-                // If it is undefined then we are searching for specific anime and we will be rendering this function
-                if (type === undefined){
+                // If type is specific that means we are only search for one pokemon so we will be executing the fuction to store all the data
+                if (type === 'specific'){
                     this.storeDataInVariables(resp)
-                } else{  // Else we will be storing the data because this function is ran by RPC component and its asking for multiple pokemon data
-                    this.setState({
-                        result : resp
-                    });
+                } else if (type === 'random' && URL === undefined){  
+                    
+                    for (let i = 0; i < 20; i ++){
+                        this.fetchInformatiion('random', resp.results[i].url, i)
+                    }
+                } else {
+                    this.storeDataInVariables(resp, 'random', id);
                 }
             })
             .catch(err => alert(err))
         }
 
-        storeDataInVariables(pokemonData){
+        storeDataInVariables(pokemonData, from=undefined, id=null){
             let pokemonType , pokemonName, pokemonHeldItems, pokemonAbilities, pokemonWeight, pokemonImgURL;
             pokemonType = pokemonName = pokemonHeldItems = pokemonAbilities = pokemonWeight = pokemonImgURL = " ";
     
@@ -92,8 +97,16 @@ const HOC = OriginalComponent => {
             if (pokemonHeldItems === " "){
                 pokemonHeldItems = 'None';
             }
-    
-            this.formatCard(pokemonType , pokemonName, pokemonHeldItems, pokemonAbilities, pokemonWeight, pokemonImgURL)
+            if (from === 'random'){
+                this.setState({
+                    result:{
+                        ...this.state.result,
+                        [id]: {pokemonType , pokemonName, pokemonHeldItems, pokemonAbilities, pokemonWeight, pokemonImgURL}
+                    }
+                })
+            } else {
+                this.formatCard(pokemonType , pokemonName, pokemonHeldItems, pokemonAbilities, pokemonWeight, pokemonImgURL)
+            }
         }
     
         formatCard(pokemonType , pokemonName, pokemonHeldItems, pokemonAbilities, pokemonWeight, pokemonImgURL){
@@ -119,6 +132,7 @@ const HOC = OriginalComponent => {
             let color = this.state.bgColors[Math.floor(Math.random()*9)]
             document.getElementById('card-image').style.backgroundColor = color;
         }    
+
 
         render(){
             return <OriginalComponent fetchData = {this.fetchInformatiion}
