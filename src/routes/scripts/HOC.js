@@ -21,19 +21,18 @@ const HOC = OriginalComponent => {
                 this.fetchInformatiion(type);
             }
         }
-        fetchInformatiion(type, URL=undefined, id=null){
+        fetchInformatiion(type, URL=undefined, id=null, callbackFunc){
             const pokemon = document.getElementById('serachInputField').getElementsByTagName('input')[0].value;
-            let fetchURL;
+            
             if (type === 'specific' && pokemon === ""){
                 alert("Please don't leave field empty");
                 return
             }
             if (URL === undefined){
-                fetchURL = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
-            } else {
-                fetchURL = URL;
+                URL = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
             }
-            fetch(fetchURL)
+            var result;
+            fetch(URL)
             .then(resp => {
                 if (resp.status === 404){
                     return Promise.reject(`Pokemon ${pokemon} not present in database`)
@@ -45,16 +44,25 @@ const HOC = OriginalComponent => {
                 // If type is specific that means we are only search for one pokemon so we will be executing the fuction to store all the data
                 if (type === 'specific'){
                     this.storeDataInVariables(resp)
-                } else if (type === 'random' && URL === undefined){  
-                    
-                    for (let i = 0; i < 20; i ++){
-                        this.fetchInformatiion('random', resp.results[i].url, i)
-                    }
+                } else if (type === 'random' && id === null){  
+                    this.fetchInfoForAllLinks(resp);
                 } else {
-                    this.storeDataInVariables(resp, 'random', id);
+                    callbackFunc(resp);
                 }
             })
             .catch(err => alert(err))
+            return result;
+        }
+
+        async fetchInfoForAllLinks(resp){
+            for (let i = 0; i < 20; i++){
+                // Callback function to take the response and append into fetched data, which we will be passing to 
+                // storeDataInVariables function for data munging
+                this.fetchInformatiion('random', resp.results[i].url, i, resp => {
+                    this.storeDataInVariables(resp, 'random', i);
+                })
+                
+            }
         }
 
         storeDataInVariables(pokemonData, from=undefined, id=null){
@@ -104,6 +112,7 @@ const HOC = OriginalComponent => {
                         [id]: {pokemonType , pokemonName, pokemonHeldItems, pokemonAbilities, pokemonWeight, pokemonImgURL}
                     }
                 })
+
             } else {
                 this.formatCard(pokemonType , pokemonName, pokemonHeldItems, pokemonAbilities, pokemonWeight, pokemonImgURL)
             }
@@ -132,6 +141,7 @@ const HOC = OriginalComponent => {
             let color = this.state.bgColors[Math.floor(Math.random()*9)]
             document.getElementById('card-image').style.backgroundColor = color;
         }    
+
 
 
         render(){
