@@ -9,10 +9,12 @@ class RandomPokemonContainer extends Component{
         super(props)
         this.state = {
             result : {},
-            ids: [1, 2, 3, 4, 5, 6]
         }
+        this.handleRefresh = this.handleRefresh.bind(this);
     }
 
+    // this is last function which is invoked in 'Mounting' React lifecycle and it just calls the 'fetchData' function
+    // which in fact is 'fetchInformation' fucntion to fetch the data.
     componentDidMount(){
         this.props.fetchData('random', 'https://pokeapi.co/api/v2/pokemon/');
     }
@@ -27,6 +29,10 @@ class RandomPokemonContainer extends Component{
         }
     }
 
+    // As the 'storedDataInVariable' function (In HOC.js line 111) updates the state for each data fetched, and we are having
+    // 20 links to fetch, SO instead of reRendering this(randomPokemonContainer.s) component again and again for each 20 link
+    // we just check that if the passed props is having data of id[19] which is the last data, if it is then only render
+    // this(randomPokemonContainer.js) component else rendering is not needed so we return 0[false];
     shouldComponentUpdate(nextProps, nextState){
         if (nextProps.result[19]){
             return 1;
@@ -35,24 +41,40 @@ class RandomPokemonContainer extends Component{
         }
     }
 
+    // this function is tied to the 'randomContainer' 'section' which displays the random pokemon.
+    // as soon as the refresh button is clicked this function is invoked cheking are we having any nextPage link
+    // If we do have nextPage link then it will be passed to 'fetchInformation' function(In HOC.js line 52) which will do
+    // the rest of the work.
+    // and if we are not having any link then we don't do anything.
+    handleRefresh(){
+        if (this.props.nextPage){
+            this.props.fetchData('random', `${this.props.nextPage}`);
+        }
+    }
+
     render(){
+        const {fetchData, result , checkKeyPress,  bgColors ,nextPage } = this.props
         return(
             <>
                 <div id='RPC-baseContainer'>
                     <div id='RPC-header'>
                         <h1><span>Random</span> Choice </h1>
+                        <div id='refresh-btn-container' onClick={this.handleRefresh}>
+                            <img src='/images/refresh.png'></img>
+                        </div>
                     </div>
                     <div id='RPC-content'>
                         
                         {Object.entries(this.state.result).map(([id, pokemon]) => {
+                            let bgColor = this.props.bgColors[Math.floor(Math.random()*9)]
                             return (
                                 <div className='card' key={id}>
-                                    <div className='card-image'>
+                                    <div className='card-image' style={{backgroundColor: bgColor}}>
                                         <img className='pokemon-sprite'src={pokemon.pokemonImgURL}></img>    
                                     </div>
                                     <div className='card-details'>
                                         <div id='pokemon-name'>
-                                            <h1>Charizard</h1>
+                                            <h1>{pokemon.pokemonName}</h1>
                                         </div>
                                         <div id='pokemon-type' className='info-container'>
                                             <p> <span >Type: </span> {pokemon.pokemonType}  </p>

@@ -36,14 +36,21 @@ html {
 
 #RPC-header{
     width: 100%;
-    /* font-size: 2.6vw; */
     font-size: 25px;    
     padding: 10px 15px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #505074;
     font-family: 'Montserrat', sans-serif;
     color: transparent;
     -webkit-text-stroke: 1px;
     -webkit-text-stroke-color: #b9b1df;
+}
+
+#RPC-header h1{
+    width: fit-content;
 }
 
 #RPC-header span{
@@ -71,9 +78,7 @@ html {
     width: 100%;
     height: 500px;
     max-width: 345px;
-    border: 1px solid black;
     background-color: white;
-    border: 1px solid white;
 }
 
 .card-image{
@@ -100,6 +105,20 @@ html {
 
 .card-details::-webkit-scrollbar{
     display: none;
+}
+
+#refresh-btn-container{
+    width: 5%;
+    float: right;
+    min-width: 50px;
+    height: fit-content;
+    cursor: pointer;
+}
+
+#refresh-btn-container img{
+    display: flex;
+    align-items: center;
+    object-fit: contain;
 }
 
 @media (max-width: 450px){
