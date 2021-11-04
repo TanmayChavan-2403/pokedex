@@ -21,7 +21,8 @@ class Pokedex extends Component{
         let searchBar = document.getElementById('serachInputField').getElementsByTagName('input')[0];
         let searchButton = document.getElementById('searchSection').getElementsByTagName('button')[0];
         const state = searchBar.getAttribute('data-state');
-        if (state === 'close'){
+        console.log(state);
+        if (state === null || state === 'close'){
             searchBar.style.width = '90%';
             searchBar.style.padding = '10px';
             searchBar.setAttribute('data-state', 'open');

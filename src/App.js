@@ -6,6 +6,7 @@ import PokemonManualContainer from './routes/scripts/pokemonManualContainer';
 import Pokedex from './routes/scripts/pokedex';
 import LandingContainer from './routes/scripts/landingContainer';
 import RandomPokemonContainer from './routes/scripts/randomPokemonContainer';
+import Footer from './routes/scripts/footer';
 
 class App extends PureComponent{
     constructor(props){
@@ -58,6 +59,10 @@ class App extends PureComponent{
 
                 <section id='randomPokemonContainer'>
                     <RandomPokemonContainer />
+                </section>
+
+                <section id='footerContainer'>
+                    <Footer />
                 </section>
 
 

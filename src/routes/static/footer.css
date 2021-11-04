@@ -1,0 +1,179 @@
+*{
+    padding:0px ;
+    margin: 0px;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}
+
+
+#body{
+    width: 100%;
+    position: relative;
+    height: fit-content;
+    background-color: #434262;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+
+html {
+    height: -webkit-fill-available;
+}
+
+h2{
+    width: fit-content;
+}
+
+h4{
+    padding: 0px 10px;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+
+/* Footer Cotainer start  */
+
+
+
+#footerImage{
+    width: 25%;
+    height: 250px;
+}
+
+#footerImage img{
+    object-fit: contain;
+}
+
+#footerContent{
+    width: 75%;
+    height: 250px;
+    display: flex;
+}
+
+#left-container{
+    width: 50%;
+    height: 100%;
+}
+
+#quote{
+    width: 100%;
+    padding: 5px 10px;
+    text-align: center;
+    color: #b9b1df;
+    font-size: min(3vw, 14px);
+}
+
+#footer-links{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 15px;
+}
+
+.link{
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    font-size: min(3.2vw, 19px);
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+
+.link a{
+    cursor: pointer;    
+}
+
+.link img{
+    width: auto;
+    height: 25px;
+}
+
+#right-container{
+    width: 50%;
+    height: 100%;
+    transform: translateY(15%);
+    align-items: center;
+    padding: 5px 10px;
+    text-align: center;
+    color: #b9b1df;
+    font-size: min(3vw, 25px);
+}
+
+.RC-block{
+    width: 100%;
+    height: 100%;
+}
+
+
+#aboutMe{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 15px;
+    color: #b9b1df;
+    font-family: 'Nunito', sans-serif;
+    font-size: min(2vw, 40px);
+}
+
+#contactMe{
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    display: none;
+}
+
+#contactMe h3{
+    width: 100%;
+    color: white;
+}
+
+.SC-link{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.SC-link img{
+    object-fit: contain;
+}
+
+#suggestion{
+    display: none;
+}
+
+
+
+
+
+@media (max-width: 750px){
+    #footerImage{
+        display: none;
+    }
+
+    #footerContent{
+        width: 100%;
+    }
+
+    #right-container{
+        display: none;
+    }
+
+    #left-container{
+        width: 100%;
+    }
+}
+
+/* Footer Cotainer end  */

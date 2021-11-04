@@ -114,29 +114,60 @@ html {
     align-items: center;
 }
 
-#searchbarHelp-container{
+
+/* Pokedex Manual container end */
+
+
+
+
+
+/* searchbarHelp container start  */
+
+#searchbarHelp{
     width: 100%;
-    height: 150px;
+}
+
+#Help-container{
+    width: 100%;
+    height: 200px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
-#searchbarHelp-arrow{
+#Help-arrow{
     width: 30%;
     height: 100%;
 }
 
-#searchbarHelp-arrow img{
+#Help-arrow img{
     width: auto;
     height:100%;
     float: right;
     transform: rotateZ(47deg);
 }
 
-#searchbarHelp-image{
+#Help-image{
     width: 50%;
     height: 100%;
 }
 
-/* Pokedex Manual container end */
+#Help-image img{
+    object-fit: contain;
+}
+
+/* searchbarHelp container end  */
+
+
+
+
+
+
+
+/* randomContainerHelp Container start */
+
+#randomContainerHelp{
+    display: block;
+}
+
+/* randomContainerHelp Container end */

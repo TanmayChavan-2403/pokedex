@@ -137,3 +137,31 @@ img{
 
 
 /* randomPokemon Container end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer container start */
+
+#footerContainer{
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    background-color: #3e3d5a;
+    margin-top: 150px;
+    border-top: 2px solid #b9b1df;
+}
+
+
+/* Footer container end */
